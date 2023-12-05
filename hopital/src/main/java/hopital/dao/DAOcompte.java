@@ -1,5 +1,8 @@
 package hopital.dao;
 
-public class DAOcompte {
+import hopital.model.Compte;
 
+public interface DAOcompte extends DAOgeneric<Compte, Integer> {
+
+	
 }
