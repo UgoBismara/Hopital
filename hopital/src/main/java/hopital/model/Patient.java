@@ -1,8 +1,9 @@
 package hopital.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Patient {
+public class Patient implements Serializable {
 	private Integer patientID;
 	private String nomPatient;
 	private String prenomPatient;
