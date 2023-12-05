@@ -107,7 +107,7 @@ public class DAOvisiteJDBC implements DAOvisite {
 		try {
 			ps = JdbcContext.getConnection().prepareStatement(
 					"select v.numeroVisite, v.idpatient, v.idmedecin, v.coutVisite, v.numeroSalle, v.dateVisite, p.nom, p.prenom"
-							+ "from visite v left join patient p on v.idpatient=p.idpatient where idpatient=?");
+							+ "from visite v left join patient p on v.idpatient=p.idpatient where numerovisite=?");
 			ps.setInt(1, key);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
