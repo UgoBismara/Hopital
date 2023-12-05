@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import hopital.dao.DAOpatient;
+import hopital.dao.DAOpatientJDBC;
+import hopital.util.JdbcContext;
+
 
 public class Secretaire extends Compte {
 	
+
 	static List<Patient> listeAttente = new ArrayList<>();
 	
 	public static List<Patient> getListeAttente() {
@@ -19,8 +24,15 @@ public class Secretaire extends Compte {
 	}
 
 	public void AjouterFileDAttente(Patient patient) {
+
 		if (patient.getPatientID()!=null) {
 		listeAttente.add(patient);
+		DAOpatient daoPatient = JdbcContext.getDaoPatientJdbc();
+		Scanner sct = new Scanner(System.in);
+		System.out.println("Votre ID : (Si vous n'en avez pas tapé 0)");
+		int ID = sct.nextInt();
+		if (daoPatient.findByKey(ID) != null) {
+			listeAttente.add(patient);
 		} else {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("entrez votre nom");
@@ -30,7 +42,10 @@ public class Secretaire extends Compte {
 			String prenom = scn.nextLine();
 			Patient x = new Patient(nom, prenom) ;
 			listeAttente.add(x);
+			daoPatient.insert(x);
 		}
+			
+		}	
 	}
 	
 	public void AfficherFileDAttente() {

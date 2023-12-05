@@ -35,7 +35,7 @@ public class Medecin extends Compte {
 	
 	public static List<Visite> listeVisite= new ArrayList<>();
 	
-	
+
 	public void salleDispo() {
 		Visite nouvelleVisite= new Visite(Secretaire.getListeAttente().get(1), this,0, salleChoisie, LocalDate.now());
 		listeVisite.add(nouvelleVisite);
