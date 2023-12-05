@@ -19,6 +19,13 @@ public class Patient {
 		this.nomPatient = nomPatient;
 		this.prenomPatient = prenomPatient;
 	}
+	
+	
+
+	public Patient(Integer patientID) {
+		super();
+		this.patientID = patientID;
+	}
 
 	public Integer getPatientID() {
 		return patientID;
