@@ -14,6 +14,13 @@ public class Compte {
 		this.compte = compte;
 	}
 	
+	public Compte(Integer ID,String login, String password, MedSec compte) {
+		this.ID = ID;
+		this.login = login;
+		this.password = password;
+		this.compte = compte;
+	}
+	
 	public Integer getID() {
 		return ID;
 	}

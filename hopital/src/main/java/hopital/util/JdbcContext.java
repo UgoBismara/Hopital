@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import hopital.dao.DAOcompteJDBC;
 import hopital.dao.DAOpatientJDBC;
-
+import hopital.dao.DAOvisiteJDBC;
 
 //configuration du JDBC 
 //on va faire la config 1 fois (evite de repeter le code)
@@ -16,10 +17,26 @@ public class JdbcContext {
 
 	// Factory
 	// Facade
-	
+
 	private static DAOpatientJDBC daoPatientJdbc = new DAOpatientJDBC();
-	
-	
+	private static DAOvisiteJDBC daoVisiteJdbc = new DAOvisiteJDBC();
+	private static DAOcompteJDBC daoCompteJdbc = new DAOcompteJDBC();
+
+	public static DAOcompteJDBC getDaoCompteJdbc() {
+		return daoCompteJdbc;
+	}
+
+	public static void setDaoCompteJdbc(DAOcompteJDBC daoCompteJdbc) {
+		JdbcContext.daoCompteJdbc = daoCompteJdbc;
+	}
+
+	public static DAOvisiteJDBC getDaoVisiteJdbc() {
+		return daoVisiteJdbc;
+	}
+
+	public static void setDaoVisiteJdbc(DAOvisiteJDBC daoVisiteJdbc) {
+		JdbcContext.daoVisiteJdbc = daoVisiteJdbc;
+	}
 
 	public static DAOpatientJDBC getDaoPatientJdbc() {
 		return daoPatientJdbc;
