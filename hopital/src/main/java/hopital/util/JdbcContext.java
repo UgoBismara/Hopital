@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import hopital.dao.DAOpatientJDBC;
+
 
 //configuration du JDBC 
 //on va faire la config 1 fois (evite de repeter le code)
@@ -14,7 +16,14 @@ public class JdbcContext {
 
 	// Factory
 	// Facade
+	
+	private static DAOpatientJDBC daoPatientJdbc = new DAOpatientJDBC();
+	
+	
 
+	public static DAOpatientJDBC getDaoPatientJdbc() {
+		return daoPatientJdbc;
+	}
 
 	// bloc execute 1 fois
 	static {
@@ -31,7 +40,7 @@ public class JdbcContext {
 	public static Connection getConnection() {
 		if (singleton == null) {
 			try {
-				singleton = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "root123@");
+				singleton = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys", "root", "root123@");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
