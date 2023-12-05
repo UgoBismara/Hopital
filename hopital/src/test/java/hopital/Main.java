@@ -11,6 +11,9 @@ public class Main {
 		Secretaire estelle = new Secretaire("1111","1234",MedSec.secretaire);
 		Patient ugo = new Patient("Ugo", "Bismara");
 		estelle.AjouterFileDAttente(ugo);
+		estelle.AfficherFileDAttente();
+		estelle.PartirEnPause();
+		estelle.retourPause();
 		//Authentification
 		//
 	}
