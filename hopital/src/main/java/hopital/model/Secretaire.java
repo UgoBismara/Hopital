@@ -66,6 +66,7 @@ public class Secretaire extends Compte {
 			oos.writeObject(this.listeAttente);
 			oos.close();
 			fos.close();
+			listeAttente.clear();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -77,7 +78,7 @@ public class Secretaire extends Compte {
 			ois = new ObjectInputStream(new FileInputStream("ListeAttente"));
 			List<Patient> patients = (List<Patient>)ois.readObject();
 			for (Patient patient : patients) {
-				System.out.println(patient);
+				listeAttente.add(patient);
 			}
 			ois.close();
 		} catch (Exception e) {

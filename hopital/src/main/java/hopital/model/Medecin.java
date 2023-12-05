@@ -3,7 +3,6 @@ package hopital.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import hopital.dao.DAOvisite;
 import hopital.util.JdbcContext;
@@ -37,7 +36,7 @@ public class Medecin extends Compte {
 	
 
 	public void salleDispo() {
-		Visite nouvelleVisite= new Visite(Secretaire.getListeAttente().get(1), this,0, salleChoisie, LocalDate.now());
+		Visite nouvelleVisite= new Visite(Secretaire.getListeAttente().get(1), this, salleChoisie, LocalDate.now());
 		listeVisite.add(nouvelleVisite);
 		setCompteurVisite(getCompteurVisite()+1);
 		if(getCompteurVisite()==10) {

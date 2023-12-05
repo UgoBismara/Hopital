@@ -10,12 +10,6 @@ import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
-import formationJdbc.model.Departement;
-import formationJdbc.model.Employe;
-
-import java.time.LocalDate;
-
-import hopital.model.Compte;
 import hopital.model.Patient;
 import hopital.model.Visite;
 import hopital.util.JdbcContext;
