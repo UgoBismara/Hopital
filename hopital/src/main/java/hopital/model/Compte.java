@@ -21,6 +21,13 @@ public class Compte {
 		this.compte = compte;
 	}
 	
+	public Compte(String login, String password) {
+		this.ID = ID;
+		this.login = login;
+		this.password = password;
+		this.compte = compte;
+	}
+	
 	public Integer getID() {
 		return ID;
 	}

@@ -11,12 +11,10 @@ import java.util.Scanner;
 import hopital.dao.DAOpatient;
 import hopital.util.JdbcContext;
 
-
 public class Secretaire extends Compte {
-	
 
 	static List<Patient> listeAttente = new ArrayList<>();
-	
+
 	public static List<Patient> getListeAttente() {
 		return listeAttente;
 	}
@@ -25,17 +23,13 @@ public class Secretaire extends Compte {
 		super(login, password, compte);
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
-	public void AjouterFileDAttente(Patient patient) {
-
-		if (patient.getPatientID()!=null) {
-		listeAttente.add(patient);
+	public void AjouterFileDAttente(int ID) {
 		DAOpatient daoPatient = JdbcContext.getDaoPatientJdbc();
-		Scanner sct = new Scanner(System.in);
-		System.out.println("Votre ID : (Si vous n'en avez pas tapé 0)");
-		int ID = sct.nextInt();
 		if (daoPatient.findByKey(ID) != null) {
-			listeAttente.add(patient);
+			listeAttente.add(daoPatient.findByKey(ID));
 		} else {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("entrez votre nom");
@@ -43,20 +37,18 @@ public class Secretaire extends Compte {
 			Scanner scn = new Scanner(System.in);
 			System.out.println("entrez votre prénom");
 			String prenom = scn.nextLine();
-			Patient x = new Patient(nom, prenom) ;
+			Patient x = new Patient(nom, prenom);
 			listeAttente.add(x);
 			daoPatient.insert(x);
 		}
-			
-		}	
 	}
-	
+
 	public void AfficherFileDAttente() {
-		for(Patient unPatient:listeAttente) {
+		for (Patient unPatient : listeAttente) {
 			System.out.println(unPatient.getNomPatient());
 		}
 	}
-	
+
 	public void PartirEnPause() {
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
@@ -71,12 +63,12 @@ public class Secretaire extends Compte {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void retourPause() {
 		ObjectInputStream ois = null;
 		try {
 			ois = new ObjectInputStream(new FileInputStream("ListeAttente"));
-			List<Patient> patients = (List<Patient>)ois.readObject();
+			List<Patient> patients = (List<Patient>) ois.readObject();
 			for (Patient patient : patients) {
 				listeAttente.add(patient);
 			}
