@@ -14,7 +14,12 @@ import hopital.util.JdbcContext;
 
 public class Secretaire extends Compte {
 	
-	public List<Patient> patients = new ArrayList<>();
+
+	static List<Patient> listeAttente = new ArrayList<>();
+	
+	public static List<Patient> getListeAttente() {
+		return listeAttente;
+	}
 
 	public Secretaire(String login, String password, MedSec compte) {
 		super(login, password, compte);
@@ -22,12 +27,15 @@ public class Secretaire extends Compte {
 	}
 
 	public void AjouterFileDAttente(Patient patient) {
+
+		if (patient.getPatientID()!=null) {
+		listeAttente.add(patient);
 		DAOpatient daoPatient = JdbcContext.getDaoPatientJdbc();
 		Scanner sct = new Scanner(System.in);
 		System.out.println("Votre ID : (Si vous n'en avez pas tapé 0)");
 		int ID = sct.nextInt();
 		if (daoPatient.findByKey(ID) != null) {
-			patients.add(patient);
+			listeAttente.add(patient);
 		} else {
 			Scanner sc = new Scanner(System.in);
 			System.out.println("entrez votre nom");
@@ -36,13 +44,15 @@ public class Secretaire extends Compte {
 			System.out.println("entrez votre prénom");
 			String prenom = scn.nextLine();
 			Patient x = new Patient(nom, prenom) ;
-			patients.add(x);
+			listeAttente.add(x);
 			daoPatient.insert(x);
+		}
+			
 		}	
 	}
 	
 	public void AfficherFileDAttente() {
-		for(Patient unPatient:patients) {
+		for(Patient unPatient:listeAttente) {
 			System.out.println(unPatient.getNomPatient());
 		}
 	}
@@ -53,7 +63,7 @@ public class Secretaire extends Compte {
 		try {
 			fos = new FileOutputStream("ListeAttente");
 			oos = new ObjectOutputStream(fos);
-			oos.writeObject(this.patients);
+			oos.writeObject(this.listeAttente);
 			oos.close();
 			fos.close();
 		} catch (Exception e) {
