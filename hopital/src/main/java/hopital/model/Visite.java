@@ -7,26 +7,33 @@ public class Visite {
 	private Integer numeroVisite;
 	private Patient patient;
 	private Compte medecin;
-	private double coutVisite;
+	private static double coutVisite = 20;
 	private int salle;
 	private LocalDate dateVisite;
 	
-	public Visite(Integer numeroVisite, Patient patient, Compte medecin, double coutVisite, int salle,
+	public Visite(Integer numeroVisite, Patient patient, Compte medecin, int salle,
 			LocalDate dateVisite) {
 		super();
 		this.numeroVisite = numeroVisite;
 		this.patient = patient;
 		this.medecin = medecin;
-		this.coutVisite = coutVisite;
 		this.salle = salle;
 		this.dateVisite = dateVisite;
 	}
 
-	public Visite(Patient patient, Compte medecin, double coutVisite, int salle, LocalDate dateVisite) {
+	public Visite(Patient patient, Compte medecin, int salle, LocalDate dateVisite) {
 		super();
 		this.patient = patient;
 		this.medecin = medecin;
-		this.coutVisite = coutVisite;
+		this.salle = salle;
+		this.dateVisite = dateVisite;
+	}
+	
+	
+
+	public Visite(Integer numeroVisite, int salle, LocalDate dateVisite) {
+		super();
+		this.numeroVisite = numeroVisite;
 		this.salle = salle;
 		this.dateVisite = dateVisite;
 	}
