@@ -6,6 +6,7 @@ public class Medecin extends Compte {
 		super(login, password, compte);
 	}
 
+	
 	public void salleDispo() {
 		
 	}

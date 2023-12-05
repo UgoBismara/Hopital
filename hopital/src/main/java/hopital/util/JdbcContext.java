@@ -57,7 +57,7 @@ public class JdbcContext {
 	public static Connection getConnection() {
 		if (singleton == null) {
 			try {
-				singleton = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys", "root", "root123@");
+				singleton = DriverManager.getConnection("jdbc:mysql://localhost:3306/hopital", "root", "root123@");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
