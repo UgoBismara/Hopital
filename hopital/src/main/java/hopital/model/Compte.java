@@ -3,6 +3,7 @@ package hopital.model;
 import java.util.Objects;
 
 public class Compte {
+	private Integer ID;
 	private String login;
 	private String password;
 	private MedSec compte;
@@ -11,6 +12,14 @@ public class Compte {
 		this.login = login;
 		this.password = password;
 		this.compte = compte;
+	}
+	
+	public Integer getID() {
+		return ID;
+	}
+
+	public void setID(Integer iD) {
+		ID = iD;
 	}
 
 	public String getLogin() {

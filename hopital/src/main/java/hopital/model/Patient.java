@@ -1,4 +1,4 @@
-package hopital;
+package hopital.model;
 
 import java.util.Objects;
 
