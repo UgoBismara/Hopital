@@ -151,6 +151,33 @@ public class DAOvisiteJDBC implements DAOvisite {
 		JdbcContext.closeConnection();
 		return visites;
 	}
-}
+	
+	public List<Visite> findByPatientID (Patient patient){
+		List<Visite> visites = new ArrayList<>();
+		Visite visite = null;
+		PreparedStatement ps = null;
+		try {
+			ps = JdbcContext.getConnection().prepareStatement(
+					"select v.numeroVisite, v.idpatient, v.idmedecin, v.coutVisite, v.numeroSalle, v.dateVisite, p.nom, p.prenom"
+							+ "from visite v left join patient p on v.idpatient=p.idpatient)");
+			ps.setInt(1, patient.getPatientID() );
+			ResultSet rs=ps.executeQuery();
+			while (rs.next()) {
+				visite = new Visite(rs.getInt("numeroVisite"), rs.getInt("numeroSalle"),
+						rs.getDate("dateVisite") != null ? rs.getDate("dateVisite").toLocalDate() : null);
+				if (rs.getInt("idpatient") != 0) {
+					visite.setPatient(new Patient(rs.getInt("idpatient"), rs.getString("nom"), rs.getString("prenom")));
+				}
+				visites.add(visite);
+				}
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JdbcContext.closeConnection();
+		return visites;
+		
+	
+}}
 
 

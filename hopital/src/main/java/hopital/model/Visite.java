@@ -6,12 +6,12 @@ import java.util.Objects;
 public class Visite {
 	private Integer numeroVisite;
 	private Patient patient;
-	private Compte medecin;
+	private Medecin medecin;
 	private static double coutVisite = 20;
 	private int salle;
 	private LocalDate dateVisite;
 	
-	public Visite(Integer numeroVisite, Patient patient, Compte medecin, int salle,
+	public Visite(Integer numeroVisite, Patient patient, Medecin medecin, int salle,
 			LocalDate dateVisite) {
 		super();
 		this.numeroVisite = numeroVisite;
@@ -21,7 +21,7 @@ public class Visite {
 		this.dateVisite = dateVisite;
 	}
 
-	public Visite(Patient patient, Compte medecin, int salle, LocalDate dateVisite) {
+	public Visite(Patient patient, Medecin medecin, int salle, LocalDate dateVisite) {
 		super();
 		this.patient = patient;
 		this.medecin = medecin;
@@ -58,7 +58,7 @@ public class Visite {
 		return medecin;
 	}
 
-	public void setMedecin(Compte medecin) {
+	public void setMedecin(Medecin medecin) {
 		this.medecin = medecin;
 	}
 

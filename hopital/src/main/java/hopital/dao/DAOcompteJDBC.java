@@ -93,6 +93,26 @@ public class DAOcompteJDBC implements DAOcompte {
 		JdbcContext.closeConnection();
 		return compte;
 	}
+	
+	
+	public int findIDByLogin(String login) {
+		int Id = 0;
+		PreparedStatement ps = null;
+		try {
+			ps = JdbcContext.getConnection().prepareStatement("select idcompte from compte where login=?");
+			ps.setString(1, login);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Id = rs.getInt("idcompte");
+			}
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		JdbcContext.closeConnection();
+		return Id;
+	}
+
 
 	@Override
 	public List<Compte> findAll() {

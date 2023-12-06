@@ -18,6 +18,10 @@ public class Secretaire extends Compte {
 	public static List<Patient> getListeAttente() {
 		return listeAttente;
 	}
+	
+	public static void setListeAttente(List<Patient> listeAttente) {
+		Secretaire.listeAttente = listeAttente;
+	}
 
 	public Secretaire(String login, String password, MedSec compte) {
 		super(login, password, compte);
@@ -25,7 +29,6 @@ public class Secretaire extends Compte {
 	}
 	
 	
-
 	public void AjouterFileDAttente(int ID) {
 		DAOpatient daoPatient = JdbcContext.getDaoPatientJdbc();
 		if (daoPatient.findByKey(ID) != null) {
@@ -42,7 +45,7 @@ public class Secretaire extends Compte {
 			daoPatient.insert(x);
 		}
 	}
-
+	
 	public void AfficherFileDAttente() {
 		for (Patient unPatient : listeAttente) {
 			System.out.println(unPatient.getNomPatient());

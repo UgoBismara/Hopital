@@ -29,8 +29,8 @@ public class Medecin extends Compte {
 		return salleChoisie;
 	}
 
-	public Medecin(String login, String password, MedSec compte) {
-		super(login, password, compte);
+	public Medecin(Integer ID,String login, String password, MedSec compte) {
+		super(ID,login, password, compte);
 	}
 
 	public static List<Visite> listeVisite = new ArrayList<>();
@@ -42,7 +42,7 @@ public class Medecin extends Compte {
 		if (getCompteurVisite() == 10) {
 			SauvegardeListeVisite();
 		}
-		Secretaire.listeAttente.removeFirst();
+		Secretaire.listeAttente.remove(0);
 	}
 
 	public void VisualiserListedAttente() {
